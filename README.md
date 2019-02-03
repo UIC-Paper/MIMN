@@ -9,7 +9,7 @@ Implementation of Practice on Long Sequential User Behavior Modeling for Click-T
 - [Amazon Book Data](http://jmcauley.ucsd.edu/data/amazon/)<br/>
 - [Taobao Data](https://tianchi.aliyun.com/dataset/dataDetail?dataId=649&userId=1)
 
-##Getting Started
+## Getting Started
 First we need to prepare data.<br/>
 
 ### Amazon Prepare
