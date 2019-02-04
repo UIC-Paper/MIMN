@@ -142,7 +142,7 @@ def train(
         elif model_type == 'DIEN_with_aux': 
             model = Model_DIEN(n_uid, n_mid, EMBEDDING_DIM, HIDDEN_SIZE, BATCH_SIZE, SEQ_LEN, use_negsample=True)
         elif model_type == 'MIMN':
-            model = Model_MIMN(n_uid, n_mid, EMBEDDING_DIM, HIDDEN_SIZE, BATCH_SIZE, Memory_Size, SEQ_LEN, Mem_Induction, Util_Reg, mask_flag=True) 
+            model = Model_MIMN(n_uid, n_mid, EMBEDDING_DIM, HIDDEN_SIZE, BATCH_SIZE, Memory_Size, SEQ_LEN, Mem_Induction, Util_Reg) 
         elif model_type == 'MIMN_with_aux':
             model = Model_MIMN(n_uid, n_mid, EMBEDDING_DIM, HIDDEN_SIZE, BATCH_SIZE, Memory_Size, SEQ_LEN, Mem_Induction, Util_Reg, use_negsample=True) 
         else:
@@ -176,8 +176,8 @@ def train(
                 aux_loss_sum += aux_loss
                 iter += 1
                 sys.stdout.flush()
-                if iter < 800:
-                    continue
+#                if iter < 800:
+#                    continue
                 if (iter % test_iter) == 0:
                     print('iter: %d ----> train_loss: %.4f ---- train_accuracy: %.4f ---- train_aux_loss: %.4f' % \
                                           (iter, loss_sum / test_iter, accuracy_sum / test_iter,  aux_loss_sum / test_iter))

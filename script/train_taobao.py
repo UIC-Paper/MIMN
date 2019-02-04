@@ -184,8 +184,8 @@ def train(
                 aux_loss_sum += aux_loss
                 iter += 1
                 sys.stdout.flush()
-                if iter < 2500:
-                    continue
+#                if iter < 2500:
+#                    continue
                 if (iter % test_iter) == 0:
                     print('iter: %d ----> train_loss: %.4f ---- train_accuracy: %.4f ---- train_aux_loss: %.4f' % \
                                           (iter, loss_sum / test_iter, accuracy_sum / test_iter,  aux_loss_sum / test_iter))
