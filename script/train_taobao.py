@@ -77,7 +77,10 @@ def eval(sess, test_data, model, model_path, batch_size):
     while True:
         if  _stop.is_set() and test_data_pool.empty():
             break
-        src,tgt = test_data_pool.get()
+        if not test_data_pool.empty():
+            src,tgt = test_data_pool.get()
+        else:
+            continue
         nick_id, item_id, cate_id, label, hist_item, hist_cate, neg_item, neg_cate, hist_mask = prepare_data(src, tgt) 
         if len(nick_id) < batch_size:
             continue
@@ -176,7 +179,10 @@ def train(
             while True:
                 if  _stop.is_set() and train_data_pool.empty():
                     break
-                src,tgt = train_data_pool.get()
+                if not train_data_pool.empty():
+                    src,tgt = train_data_pool.get()
+                else:
+                    continue
                 nick_id, item_id, cate_id, label, hist_item, hist_cate, neg_item, neg_cate, hist_mask = prepare_data(src, tgt)
                 loss, acc, aux_loss = model.train(sess, [nick_id, item_id, cate_id, hist_item, hist_cate, neg_item, neg_cate, hist_mask, label, lr])
                 loss_sum += loss
